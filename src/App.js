@@ -1,3 +1,7 @@
+import React from 'react';
+
+import { LoginPage } from './pages/login/index';
+
 
 function App() {
   let name = "world"
