@@ -5,7 +5,7 @@ import React from 'react';
 import { LoginPage } from './pages/login/index';
 import { SignInPage } from './pages/sigin/index';
 
-
+import { Dashboard } from './pages/dashboard/index';
 
 function App() {
   return(
@@ -20,6 +20,9 @@ function App() {
     </Route>
     <Route path="/sign-in">
       <SignInPage />
+    </Route>
+    <Route to="/dashboard">
+      <Dashboard />
     </Route>
   </Switch>
 </Router>

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import './style.scss'
 
 import { getAuth, createUserWithEmailAndPassword } from "../../firebase/index";
 
 export const SignInPage = () => {
+
+    const history = useHistory()
 
     let [userNameData, setUserNameData] = useState("")
     let [emailData, setEmailData] = useState("")
@@ -25,7 +27,8 @@ export const SignInPage = () => {
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            console.log(user.uid)
+            //console.log(user.uid)
+            history.push("/dashboard")
             // ...
           })
           .catch((error) => {
@@ -62,6 +65,7 @@ export const SignInPage = () => {
         if(passwordData !== passwordConfirmData) return alert("Error: As senhas informadas estão diferentes")
         
         sigInFirebase()
+        
     }
 
     return (
