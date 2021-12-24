@@ -55,6 +55,7 @@ export const SignInPage = () => {
 
         if(passwordData !== passwordConfirmData) return alert("Error: As senhas informadas estão diferentes")
         
+        sigInFirebase()
     }
 
     return (
