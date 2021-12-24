@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { Link } from 'react-router-dom'
+
 import './style.scss'
 
 export const LoginPage = () => {
@@ -47,7 +49,7 @@ export const LoginPage = () => {
                     </div>
                 </div>
                 <div id="create-accout-div">
-                    <span>criar minha <a>conta</a></span>
+                    <span>criar minha <Link to="/sign-in">conta</Link></span>
                 </div>
             </main>
         </div>

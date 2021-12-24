@@ -32,10 +32,10 @@ $white: #fff;
         padding-top: 150px;
         gap: 20px;
 
-        #login-container{
+        #signIn-container{
             background: $light-green;
             width: 400px;
-            min-height: 400px;
+            height: 500px;
             border-radius: 10px;
             padding:  50px 60px;
             display: flex;
@@ -43,14 +43,14 @@ $white: #fff;
             align-items: center;
             gap: 40px;
     
-            #longin-title{
+            #signIn-title{
                 width: 100%;
                 color: $white;
                 font-weight: 700;
                 font-size: 32px;
             }
     
-            #login-inputs-div{
+            #signIn-inputs-div{
                 width: 100%;
                 display: flex;
                 flex-direction: column;

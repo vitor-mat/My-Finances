@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import './style.scss'
 
 import { getAuth, createUserWithEmailAndPassword } from "../../firebase/index";
@@ -64,11 +66,11 @@ export const SignInPage = () => {
                 <h1>My Finance$</h1>
             </header>
             <main>
-                <div id="login-container">
-                    <div id="longin-title">
+                <div id="signIn-container">
+                    <div id="signIn-title">
                         <h2>Cadastrar</h2>
                     </div>
-                    <div id="login-inputs-div">
+                    <div id="signIn-inputs-div">
                         <input type="text" placeholder="Nome de usuário" onChange={(e) => handleInputData(e, userNameData, setUserNameData)} />
                         <input type="email" placeholder="Email" onChange={(e) => handleInputData(e, emailData, setEmailData)} />
                         <input type="password" placeholder="Senha" onChange={(e) => handleInputData(e, passwordData, setPasswordData)} />
@@ -77,7 +79,7 @@ export const SignInPage = () => {
                     </div>
                 </div>
                 <div id="create-accout-div">
-                    <span>Tenho conta, fazer <a>login</a>.</span>
+                    <span>Tenho conta, fazer <Link to="/login">login</Link>.</span>
                 </div>
             </main>
         </div>
