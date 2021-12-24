@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom'
 
+import { getAuth, signInWithEmailAndPassword } from "../../firebase/index";
+
 import './style.scss'
 
 export const LoginPage = () => {
@@ -15,22 +17,41 @@ export const LoginPage = () => {
     }
 
 
+    const loginFirebase = () => {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, emailData, passwordData)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode)
+                if(errorCode === "auth/user-not-found") return alert("Error: Usuário não existe!")
+                if(errorCode === "auth/wrong-password") return alert("Error: A senha está iconrreta!")
+            });
+    }
+
     const formValidation = () => {
 
-        if(!emailData.length) return alert("Error: O campo de email não pode estar vazio!")
+        if (!emailData.length) return alert("Error: O campo de email não pode estar vazio!")
 
-        if(!passwordData.length) return alert("Error: O campo de senha não pode estar vazio!")
+        if (!passwordData.length) return alert("Error: O campo de senha não pode estar vazio!")
 
-        if(
+        if (
             emailData.indexOf(".com") === -1 ||
             emailData.indexOf("@") === -1 ||
             emailData.indexOf(" ") !== -1 ||
             emailData.length < 8 ||
-            emailData[emailData.indexOf("@")-1] === undefined ||
-            emailData[emailData.indexOf("@")+1] === undefined ||
-            emailData[emailData.indexOf("@")+1] === "."
-            ) return alert("Error: Este email está inválido!")
-        
+            emailData[emailData.indexOf("@") - 1] === undefined ||
+            emailData[emailData.indexOf("@") + 1] === undefined ||
+            emailData[emailData.indexOf("@") + 1] === "."
+        ) return alert("Error: Este email está inválido!")
+
+        loginFirebase()
+
     }
 
     return (
@@ -45,7 +66,8 @@ export const LoginPage = () => {
                     </div>
                     <div id="login-inputs-div">
                         <input type="email" placeholder="Email" onChange={(e) => handleInputData(e, emailData, setEmailData)} />
-                        <input type="password" placeholder="Senha" onChange={(e) => handleInputData(e, passwordData, setPasswordData)} />                        <button>Entrar</button>
+                        <input type="password" placeholder="Senha" onChange={(e) => handleInputData(e, passwordData, setPasswordData)} />                        
+                        <button onClick={formValidation}>Entrar</button>
                     </div>
                 </div>
                 <div id="create-accout-div">
