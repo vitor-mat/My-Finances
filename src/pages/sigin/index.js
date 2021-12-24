@@ -55,6 +55,10 @@ export const SignInPage = () => {
             emailData[emailData.indexOf("@")+1] === "."
             ) return alert("Error: Este email está inválido!")
 
+        if(passwordData.length < 8) return alert("Error: sua senha não pode ter menos que 8 caracteres!")
+
+        if(passwordData.indexOf(" ") !== -1) return alert("Error: Sua senha não pode conter espaços")
+
         if(passwordData !== passwordConfirmData) return alert("Error: As senhas informadas estão diferentes")
         
         sigInFirebase()
