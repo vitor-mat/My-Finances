@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { getAuth, signInWithEmailAndPassword } from "../../firebase/index";
 
 import './style.scss'
 
 export const LoginPage = () => {
+
+    const history = useHistory() 
 
     let [emailData, setEmailData] = useState("")
     let [passwordData, setPasswordData] = useState("")
@@ -23,6 +25,7 @@ export const LoginPage = () => {
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
+                history.push('/dashboard')
                 // ...
             })
             .catch((error) => {
