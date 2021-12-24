@@ -6,17 +6,16 @@ import { getAuth, createUserWithEmailAndPassword } from "../../firebase/index";
 
 export const SignInPage = () => {
 
+    let [userNameData, setUserNameData] = useState("")
     let [emailData, setEmailData] = useState("")
     let [passwordData, setPasswordData] = useState("")
+    let [passwordConfirmData, setPasswordConfirmData] = useState("")
 
 
-    const getEmailData = (e) => {
-        setEmailData(emailData = e.target.value)
+    const handleInputData = (e, stateVariable, stateFunction) => {
+        stateFunction(stateVariable = e.target.value)
     }
 
-    const getPasswordData = (e) => {
-        setPasswordData(passwordData = e.target.value)
-    }
 
     const sigInFirebase = () => {
         const auth = getAuth();
@@ -24,6 +23,7 @@ export const SignInPage = () => {
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
+            console.log(user.uid)
             // ...
           })
           .catch((error) => {
@@ -31,7 +31,10 @@ export const SignInPage = () => {
             const errorMessage = error.message;
             // ..
           });
-          alert("entrou")
+    }
+
+    const formValidation = () => {
+
     }
 
     return (
@@ -45,10 +48,10 @@ export const SignInPage = () => {
                         <h2>Cadastrar</h2>
                     </div>
                     <div id="login-inputs-div">
-                        <input type="text" placeholder="Nome de usuário" />
-                        <input type="email" placeholder="Email" onChange={getEmailData} />
-                        <input type="password" placeholder="Senha" onChange={getPasswordData} />
-                        <input type="password" placeholder="Confirme a senha" />
+                        <input type="text" placeholder="Nome de usuário" onChange={(e) => handleInputData(e, userNameData, setUserNameData)} />
+                        <input type="email" placeholder="Email" onChange={(e) => handleInputData(e, emailData, setEmailData)} />
+                        <input type="password" placeholder="Senha" onChange={(e) => handleInputData(e, passwordData, setPasswordData)} />
+                        <input type="password" placeholder="Confirme a senha" onChange={(e) => handleInputData(e, passwordConfirmData, setPasswordConfirmDat)} />
                         <button onClick={() => sigInFirebase()}>Cadastrar</button>
                     </div>
                 </div>
