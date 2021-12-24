@@ -52,6 +52,9 @@ export const SignInPage = () => {
             emailData[emailData.indexOf("@")+1] === undefined ||
             emailData[emailData.indexOf("@")+1] === "."
             ) return alert("Error: Este email está inválido!")
+
+        if(passwordData !== passwordConfirmData) return alert("Error: As senhas informadas estão diferentes")
+        
     }
 
     return (
