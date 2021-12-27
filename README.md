@@ -8,4 +8,4 @@ App para registros financeiros.
 
 ## Status
 
-- Projeto em desenvolvimento
+Projeto em desenvolvimento
